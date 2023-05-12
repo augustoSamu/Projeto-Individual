@@ -5,16 +5,13 @@ body {
 }
 
 .container {
-    width: 90%;
+    width: 80%;
     margin: auto;
     display: flex;
 }
 
-.header {
-    border-bottom: 2px gray solid;
-}
-
 .header .container {
+    width: 90%;
     justify-content: space-between;
 }
 
@@ -27,9 +24,9 @@ body {
     width: 300px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     list-style: none;
-    gap: 30px;
+
 }
 
 .titulo {
@@ -42,5 +39,31 @@ body {
 .logoTitulo {
     width: 55px;
     height: 55px;
+}
 
+.banner {
+    height: 516px;
+    width: 1351px;
+    display: flex;
+    justify-content: center;
+    background-image: URL(../assets/img4.jpg);
+    background-size: cover;
+
+}
+
+.banner .container {
+    width: 750px;
+    padding-bottom: 200px;
+    font-size: 36px;
+    display: flex;
+    justify-content: center;
+}
+
+.banner .container span {
+
+    background-color: white;
+    font-weight: bold;
+    border: #052c6f solid;
+    border-radius: 20px;
+    text-align: center;
 }
