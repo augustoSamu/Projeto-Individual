@@ -1,5 +1,5 @@
 # Projeto-Individual
-Foco em desenvolver um projeto como meu gosto: Shrek e seus filmes
+Foco em desenvolver um projeto como meu gosto: Universo de Shrek 
 
 
 
