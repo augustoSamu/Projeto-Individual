@@ -1,16 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Dosis&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Dosis:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Dosis:wght@400;700;800&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Dosis&display=swap'); */
+
 body {
     margin: 0;
     padding: 0;
     font-family: TT Norms W01 Regular, helvetica, sans-serif;
     background-color: #2E5941;
+    /* font-family: Carrois Gothic SC; */
+    font-family: 'Dosis';
+    font-size: 22px;
 }
 
-.header{
+.header {
+    background-color: #EBEFE6;
     border-bottom: 2px #F5F7F3 solid;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .container {
-    width: 85%;
+    width: 90%;
     margin: auto;
     display: flex;
 }
@@ -20,61 +30,95 @@ body {
     justify-content: space-between;
 }
 
-.header .container .titulo{
+.header .container .navbar {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #F0F3ED;
+    gap: 50px;
 }
 
-.header .container .navbar{
+.agora {
+    font-weight: 800;
+}
+
+.cadastroLogin {
+    padding-left: 10px;
+    padding-right: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 35px;
+    font-weight: bold;
 }
 
-.header .container .cadastroLogin{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-}
-
-.header .container .login{
+.header .container .login {
     width: 80px;
- /*    background-color: #374F41;
-    border: #F0F3ED solid;
-    border-radius: 4px;
- */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.header .container .cadastro{
+.header .container .cadastro {
     width: 80px;
-/*     background-color: #374F41;
-    border: #F0F3ED solid;
-    border-radius: 4px; */
-
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #2E5941;
 }
 
 .header a {
     text-decoration: none;
-    color: #F0F3ED;
+    color: black;
 }
 
-.navbar {
+
+.filmes .container {
+    margin-top: 40px;
     display: flex;
-    align-items: center;
-
-    list-style: none;
+    flex-direction: column;
+    justify-items: center;
+    gap: 40px;
 }
 
+.filmes .container .cima {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.filmes .container .baixo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.card {
+    width: 240px;
+    height: 290px;
+    background-color: #D9D9D9;
+    padding: 0px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-weight: 600;
+    font-weight: 700;
+}
+
+.card span {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 10px;
+}
+
+.filmes a {
+    text-decoration: none;
+    color: black;
+}
 /* 
 .banner {
     height: fit-content;
