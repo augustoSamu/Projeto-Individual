@@ -47,6 +47,10 @@ body {
     justify-content: space-evenly;
 }
 
+.esquerda a {
+   text-decoration: none;
+}
+
 .titulo {
     font-size: 36px;
     font-weight: 700;
@@ -77,20 +81,34 @@ body {
     font-size: 16px;
 }
 
+.botoes {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .botao {
-    width: 250px;
+    padding: 30px;
+    width: 175px;
     height: 60px;
     margin-top: 40px;
     font-family: 'Dosis';
     font-size: 32px;
     color: #EBEFE6;
-    background: #2E5941;
     border: 3px solid #000000;
     border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     cursor: pointer;
 }
 
-/* .verde
+.voltar {
+    background-color: #A01818;
+}
 
-.vermelho */
+.ir {
+    background: #2E5941;
+}
