@@ -63,6 +63,11 @@ body {
     justify-content: space-evenly;
 }
 
+.centro span {
+    display: flex;
+    justify-content: end;
+}
+
 .campo {
     display: flex;
     flex-direction: column;
