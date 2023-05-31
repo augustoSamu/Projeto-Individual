@@ -173,3 +173,8 @@ body {
     word-wrap: break-word;
     text-align: center;
 }
+
+.verde {
+    color: #2E5941;
+    font-weight: bold;
+}
