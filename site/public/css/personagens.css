@@ -117,8 +117,8 @@ body {
 }
 
 .botao {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -127,17 +127,19 @@ body {
     text-decoration: none;
     font-family: 'Dosis';
     font-size: 32px;
-    border: 1px solid;
+    border: none;
     text-decoration: none;
     cursor: pointer;
-}
-
-.preto {
-    background: #000000;
-    color: #EBEFE6;
+    font-weight: 600;
 }
 
 .branco {
     background: #EBEFE6;
-    color: #000000;
+    border-radius: 35px;
+}
+
+.tranparente {
+    background: rgba(0, 0, 0, 0.41);
+    border-radius: 35px;
+    color: #EBEFE6;
 }
