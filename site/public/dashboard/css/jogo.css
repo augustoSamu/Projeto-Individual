@@ -65,22 +65,6 @@
     font-size: 16px;
 }
 
-.correto {
-    background-color: #04A777;
-}
-
-.correto::placeholder {
-    color: #04A777
-}
-
-.errou {
-    background-color: #D90368;
-}
-
-.errou::placeholder {
-    color: #D90368
-}
-
 .container .botoes {
     justify-content: space-around;
     height: fit-content;
