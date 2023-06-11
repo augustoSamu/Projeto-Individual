@@ -5,6 +5,7 @@
     <title>Dashboard | Pontuação</title>
     <link rel="stylesheet" href="css/menu.css">
     <link rel="stylesheet" href="css/quiz.css">
+    <script src="js/quiz.js"></script>
 </head>
 
 <body>
@@ -55,7 +56,7 @@
         <div class="area">
             <div class="container">
                 <div id="divQuiz" class="quiz">
-                    <div class="bh">
+                    <div id="divFim" class="bh">
                         <div class="info">
                             <span>QUESTÃO <span id="spanQuestao"></span></span>
                             <span>ACERTOS: <span id="spanAcertos"></span>/10</span>
@@ -93,111 +94,3 @@
 </body>
 
 </html>
-
-<script>
-    listaPerguntas = [
-        {
-            pergunta: "Quem é o filho da fada madrinha?",
-            alternativas: ["Pata Mansa", "Encantado", "João Trombeta", "Fiona"],
-            respostaCerta: 1
-        },
-        {
-            pergunta: "O que o burro vira ao tomar a poção Felizes para Sempre ",
-            alternativas: ["Lobo", "Alazão", "Sapo", "Gato"],
-            respostaCerta: 1
-        },
-        {
-            pergunta: "Aonde o Shrek mora?",
-            alternativas: ["Montanha", "Pântano", "Castelo", "Lagoa"],
-            respostaCerta: 1
-        },
-        {
-            pergunta: "Com quem Shrek assina um contrato e muda a sua vida?",
-            alternativas: ["Farquaad", "João Trombeta", "Rumpelstiltskin", "Humpty Dumpty"],
-            respostaCerta: 2
-        },
-        {
-            pergunta: "Qual personagem tem ursos como a sua família?",
-            alternativas: ["Dragão", "Merlin", "Cachinhos Dourados", "Jack e Jill"],
-            respostaCerta: 2
-        },
-        {
-            pergunta: "Quem é o melhor amigo do Shrek?",
-            alternativas: ["Encantado", "Harold", "Burro", "Biscoito"],
-            respostaCerta: 2
-        },
-        {
-            pergunta: "Quem é o verdadeiro sucessor ao trono?",
-            alternativas: ["Fiona", "Arthur", "Três Porquinhos", "Shrek"],
-            respostaCerta: 3
-        },
-        {
-            pergunta: "Qual personagem se parece um ovo?",
-            alternativas: ["Lillian", "Pata Mansa", "Lobo Mau", "Humpty Dumpty"],
-            respostaCerta: 3
-        },
-        {
-            // pergunta: "Qual desses, apesar de uma infância difícil, sempre se manteve otimista?",
-            pergunta: "Pergunta secreta",
-            alternativas: ["1", "2", "3", "4"],
-            respostaCerta: 0
-        },
-        {
-            //pergunta: "O Gato de Botas luta por sua vida contra quem?"
-            pergunta: "Pergunta secreta 2",
-            alternativas: ["1", "2", "3", "4"],
-            respostaCerta: 0
-        },
-    ]
-
-    var tempo = 60
-    var acertos = 0
-    var questao = 1
-    var aleatorio = 0
-
-    setTimeout(() => {
-        sortear()
-        spanQuestao.innerHTML = `${questao}`
-        spanAcertos.innerHTML = `${acertos}`
-    }, "300")
-
-    function sortear() {
-        if (listaPerguntas.length > 0) {
-            aleatorio = parseInt(Math.random() * listaPerguntas.length)
-            var alternativaQuestoes = listaPerguntas[aleatorio].alternativas
-
-            spanPergunta.innerHTML = `${listaPerguntas[aleatorio].pergunta}`
-            spanBotao1.innerHTML = `${listaPerguntas[aleatorio].alternativas[0]}`
-            spanBotao2.innerHTML = `${listaPerguntas[aleatorio].alternativas[1]}`
-            spanBotao3.innerHTML = `${listaPerguntas[aleatorio].alternativas[2]}`
-            spanBotao4.innerHTML = `${listaPerguntas[aleatorio].alternativas[3]}`
-        }
-    }
-
-    function validacao(alternativaSelecionada) {
-        var alternativaCorreta = listaPerguntas[aleatorio].respostaCerta
-
-        if (alternativaCorreta == alternativaSelecionada) {
-            acertos++
-            spanPergunta.innerHTML = `RESPOSTA CORRETA!`
-            console.log("Você acertou!")
-        } else {
-            spanPergunta.innerHTML = `RESPOSTA ERRADA!`
-            console.log("lIXOOO!")
-        }
-
-        questao++
-        spanAcertos.innerHTML = acertos
-        listaPerguntas.splice(aleatorio, 1)
-
-        if (questao <= 10) {
-            setTimeout(() => {
-                sortear()
-                spanQuestao.innerHTML = questao
-            }, 1000)
-        } else {
-            console.log("Quiz finalizado!")
-        }
-    }
-
-</script>

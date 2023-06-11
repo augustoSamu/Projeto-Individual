@@ -17,7 +17,7 @@ var listaImagens = [
     },
     {
         imagem: "<img src='../assets/pharold.svg'>",
-        nome: "rei harold"
+        nome: "harold"
     },
     {
         imagem: "<img src='../assets/plillian.svg'>",
@@ -46,7 +46,55 @@ var listaImagens = [
     {
         imagem: "<img src='../assets/prumpelstiltskin.svg'>",
         nome: "rumpelstiltskin"
-    }
+    },
+    {
+        imagem: "<img src='../assets/plobomau.svg'>",
+        nome: "lobo mau"
+    },
+    {
+        imagem: "<img src='../assets/ppinoquio.svg'>",
+        nome: "pinoquio"
+    },
+    {
+        imagem: "<img src='../assets/pbiscoito.svg'>",
+        nome: "biscoito"
+    },
+    {
+        imagem: "<img src='../assets/pporquinhos.svg'>",
+        nome: "tres porquinhos"
+    },
+    {
+        imagem: "<img src='../assets/pgato.svg'>",
+        nome: "gato de botas"
+    },
+    {
+        imagem: "<img src='../assets/ppata.svg'>",
+        nome: "pata mansa"
+    },
+    {
+        imagem: "<img src='../assets/pperrito.svg'>",
+        nome: "perrito"
+    },
+    {
+        imagem: "<img src='../assets/pcachinhos.svg'>",
+        nome: "cachinhos dourados"
+    },
+    {
+        imagem: "<img src='../assets/phumpty.svg'>",
+        nome: "humpty dumpty"
+    },
+    {
+        imagem: "<img src='../assets/pjj.svg'>",
+        nome: "jack e jill"
+    },
+    {
+        imagem: "<img src='../assets/pmorte.svg'>",
+        nome: "morte"
+    },
+    {
+        imagem: "<img src='../assets/ptrombeta.svg'>",
+        nome: "joao trombeta"
+    },
 ]
 
 var tempo = 60
@@ -72,6 +120,48 @@ var relogio = setInterval(() => {
                 <button onclick="continuar()" class="botao jogo">
                  Continuar
                 </button>`
+
+
+        var idUsuario = sessionStorage.ID_USUARIO
+
+        fetch("/usuarios/acertosM", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                acertosMinigame: acertos,
+                idServer: idUsuario
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                Swal.fire({
+                    // title: 'Error!',
+                    // text: 'Do you want to continue',
+                    // imageUrl: 'https://static.wikia.nocookie.net/shrek/images/0/0c/Shrek_closeup.JPG/revision/latest/scale-to-width-down/136?cb=20220601234009',
+                    // confirmButtonText: 'Cool'
+                    imageUrl: 'https://static.wikia.nocookie.net/shrek/images/0/0c/Shrek_closeup.JPG/revision/latest/scale-to-width-down/136?cb=20220601234009',
+                    imageHeight: 1500,
+                    imageAlt: 'A tall image'
+                })
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+
+
         clearInterval(relogio)
     } else {
         tempo--
@@ -122,6 +212,44 @@ function verificar() {
                 <button onclick="continuar()" class="botao jogo">
                  Continuar
                 </button>`
+
+
+                
+            fetch("/usuarios/acertosM", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    acertosMinigame: acertos,
+                    idServer: idUsuario
+                })
+            }).then(function (resposta) {
+
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    Swal.fire({
+                        // title: 'Error!',
+                        // text: 'Do you want to continue',
+                        // imageUrl: 'https://static.wikia.nocookie.net/shrek/images/0/0c/Shrek_closeup.JPG/revision/latest/scale-to-width-down/136?cb=20220601234009',
+                        // confirmButtonText: 'Cool'
+                        imageUrl: 'https://static.wikia.nocookie.net/shrek/images/0/0c/Shrek_closeup.JPG/revision/latest/scale-to-width-down/136?cb=20220601234009',
+                        imageHeight: 1500,
+                        imageAlt: 'A tall image'
+                    })
+                    cardErro.style.display = "block";
+
+                    mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                } else {
+                    throw ("Houve um erro ao tentar realizar o cadastro!");
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
         }
 
     } else {

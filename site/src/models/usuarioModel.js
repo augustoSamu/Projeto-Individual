@@ -22,7 +22,29 @@ function cadastrar(nome, email, senha) {
     return database.executar(instrucao);
 }
 
+function acertosM(acertos, fkUsuario) {
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        INSERT INTO jogo1 (acertos, fkUsuario) VALUES ('${acertos}', '${fkUsuario}');
+    `;
+    return database.executar(instrucao);
+}
+
+function acertosQ(acertos, fkUsuario) {
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        INSERT INTO jogo2 (acertos, fkUsuario) VALUES ('${acertos}', '${fkUsuario}');
+    `;
+    return database.executar(instrucao);
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    acertosM,
+    acertosQ
 };

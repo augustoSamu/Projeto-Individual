@@ -1,0 +1,11 @@
+.botoes {
+    width: 80%;
+    justify-content: space-between;
+    display: flex;
+    border-radius: 30px;
+}
+
+.graficos {
+    background-color: antiquewhite;
+    color: white;
+}

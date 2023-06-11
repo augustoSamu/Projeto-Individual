@@ -4,6 +4,7 @@
 <head>
     <title>Shrek | Cadastro</title>
     <link rel="stylesheet" href="css/cadastroLogin.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -30,12 +31,9 @@
                     </div>
 
                     <div class="botoes">
-                        <a href="index.html">
-                            <button class="botao voltar">Voltar</button>
-                        </a>
+                        <button class="botao voltar">Voltar</button>
 
-                        <button class="botao ir">Cadastrar</button>
-
+                        <button onclick="cadastrar()" class="botao ir">Cadastrar</button>
                     </div>
                 </div>
 
@@ -51,24 +49,17 @@
 
 <script>
     function cadastrar() {
-        aguardar();
 
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
-        var nomeVar = nome_input.value;
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
-        var confirmacaoSenhaVar = confirmacao_senha_input.value;
+        var nomeVar = inputNome.value;
+        var emailVar = inputEmail.value;
+        var senhaVar = inputSenha.value;
+        var confirmacaoSenhaVar = inputConfirmarSenha.value;
 
         if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-
-            finalizarAguardar();
-            return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
         }
 
         // Enviando o valor da nova input
@@ -89,6 +80,15 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
+                Swal.fire({
+                    // title: 'Error!',
+                    // text: 'Do you want to continue',
+                    // imageUrl: 'https://static.wikia.nocookie.net/shrek/images/0/0c/Shrek_closeup.JPG/revision/latest/scale-to-width-down/136?cb=20220601234009',
+                    // confirmButtonText: 'Cool'
+                    imageUrl: 'https://static.wikia.nocookie.net/shrek/images/0/0c/Shrek_closeup.JPG/revision/latest/scale-to-width-down/136?cb=20220601234009',
+                    imageHeight: 1500,
+                    imageAlt: 'A tall image'
+                })
                 cardErro.style.display = "block";
 
                 mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
@@ -97,20 +97,12 @@
                     window.location = "login.html";
                 }, "2000")
 
-                limparFormulario();
-                finalizarAguardar();
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
         });
-
-        return false;
-    }
-
-    function sumirMensagem() {
-        cardErro.style.display = "none"
+        return false
     }
 </script>
