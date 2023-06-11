@@ -17,7 +17,7 @@
                         <img src="../assets/icongato.svg" style="height: 80px;">
                         <img src="../assets/iconfoto.svg" style="height: 21px;">
                     </div>
-                    <span id="nomeUsuario">Samu</span>
+                    <span id="spanNomeUsuario">Samu</span>
                 </div>
             </div>
 
@@ -63,7 +63,13 @@
             </div>
         </div>
     </div>
+</body>
 
 </body>
 
 </html>
+
+<script>
+    var nomeUsuario = sessionStorage.NOME_USUARIO
+    spanNomeUsuario.innerHTML = `${nomeUsuario}`
+</script>

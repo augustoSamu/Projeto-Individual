@@ -1,4 +1,4 @@
-listaPerguntas = [
+var listaPerguntas = [
     {
         pergunta: "Quem é o filho da fada madrinha?",
         alternativas: ["Pata Mansa", "Encantado", "João Trombeta", "Fiona"],
@@ -52,7 +52,7 @@ listaPerguntas = [
         respostaCerta: 0
     },
 ]
-
+var nomeUsuario = sessionStorage.NOME_USUARIO
 var tempo = 60
 var acertos = 0
 var questao = 1
@@ -60,6 +60,7 @@ var aleatorio = 0
 
 setTimeout(() => {
     sortear()
+    spanNomeUsuario.innerHTML = `${nomeUsuario}`
     spanQuestao.innerHTML = `${questao}`
     spanAcertos.innerHTML = `${acertos}`
 }, "300")
@@ -97,7 +98,7 @@ function validacao(alternativaSelecionada) {
         setTimeout(() => {
             sortear()
             spanQuestao.innerHTML = questao
-        }, 1000)
+        }, 500)
     } else if (acertos < 10) {
         setTimeout(() => {
             divFim.innerHTML = `
@@ -119,7 +120,7 @@ function validacao(alternativaSelecionada) {
 
 
         var idUsuario = sessionStorage.ID_USUARIO
-        
+
         fetch("/usuarios/acertosQ", {
             method: "POST",
             headers: {

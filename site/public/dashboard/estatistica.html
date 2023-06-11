@@ -2,10 +2,11 @@
 <html lang="pt-br">
 
 <head>
-  <title>Dashboard | Pontuação</title>
+  <title>Dashboard | Estatistica</title>
   <link rel="stylesheet" href="css/menu.css">
   <link rel="stylesheet" href="css/estatistica.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="estatistica.js"></script>
 </head>
 
 <body onload="obterDadosGrafico(), obterDadosGrafico2(), media(), media2()">
@@ -13,13 +14,12 @@
     <div class="header">
       <div class="navHeader">
         <img src="../assets/logo.svg">
-
         <div class="infoUsuario">
           <div class="icons">
             <img src="../assets/icongato.svg" style="height: 80px;">
-            <img src="../assets/iconfoto.svg" style="height: 21px;">
+            <img src="../assets/iconfoto.svg" style="height: 15px;">
           </div>
-          <span id="nomeUsuario">Samu</span>
+          <span id="spanNomeUsuario">Samu</span>
         </div>
       </div>
 
@@ -49,14 +49,16 @@
         </a>
       </div>
     </div>
+
+    <!-- area direita -->
     <div class="area">
       <div class="topo">
-        <span>Estatísticas gerais</span>
+        <span>Suas estatísticas</span>
       </div>
 
-      <div class="botoes">
+      <div class="conteudo">
         <div class="mediaMinigame">
-          <span id="spanMedia"></span>
+          <span id="spanMedia">2</span>
         </div>
         <div class="mediaQuiz">
           <span id="spanMedia2">5</span>
@@ -74,25 +76,29 @@
       </div>
     </div>
   </div>
-</body>
 
 </html>
 
+
 <script>
+  var nomeUsuario = sessionStorage.NOME_USUARIO
+  spanNomeUsuario.innerHTML = `${nomeUsuario}`
+
   function obterDadosGrafico() {
-    fetch(`/medidas/buscarUltimasAcertos/${sessionStorage.ID_USUARIO}`, { cache: 'no-store' }).then(function (response) {
-      if (response.ok) {
-        response.json().then(function (resposta) {
-          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-          resposta.reverse();
+    fetch(`/medidas/buscarUltimasAcertos/${sessionStorage.ID_USUARIO}`, { cache: 'no-store' })
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            resposta.reverse();
 
-          plotarGrafico(resposta, sessionStorage.ID_USUARIO);
+            plotarGrafico(resposta, sessionStorage.ID_USUARIO);
 
-        });
-      } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-      }
-    })
+          });
+        } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+        }
+      })
       .catch(function (error) {
         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
       });
@@ -141,22 +147,21 @@
     );
   }
 
-
-
-
   function obterDadosGrafico2() {
-    fetch(`/medidas/buscarUltimasAcertos2/${sessionStorage.ID_USUARIO}`, { cache: 'no-store' }).then(function (response) {
-      if (response.ok) {
-        response.json().then(function (resposta2) {
-          console.log(`Dados recebidos: ${JSON.stringify(resposta2)}`);
+    fetch(`/medidas/buscarUltimasAcertos2/${sessionStorage.ID_USUARIO}`, { cache: 'no-store' })
+      .then(function (response) {
+        if (response.ok) {
+          response.json()
+            .then(function (resposta2) {
+              console.log(`Dados recebidos: ${JSON.stringify(resposta2)}`);
 
-          plotarGrafico2(resposta2, sessionStorage.ID_USUARIO);
+              plotarGrafico2(resposta2, sessionStorage.ID_USUARIO);
 
-        });
-      } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-      }
-    })
+            });
+        } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+        }
+      })
       .catch(function (error) {
         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
       });
@@ -205,51 +210,49 @@
     );
   }
 
-
-
-
-
-
   function media() {
-    fetch(`/medidas/media/${sessionStorage.ID_USUARIO}`, { cache: 'no-store' }).then(function (response) {
-      if (response.ok) {
-        response.json().then(function (resposta3) {
-          console.log(`Dados recebidos: ${JSON.stringify(resposta3)}`);
+    fetch(`/medidas/media/${sessionStorage.ID_USUARIO}`, { cache: 'no-store' })
+      .then(function (response) {
+        if (response.ok) {
+          response.json()
+            .then(function (resposta3) {
+              console.log(`Dados recebidos: ${JSON.stringify(resposta3)}`);
 
-          for (var i = 0; i < resposta3.length; i++) {
-            var elementoAtual = resposta3[i];
-            spanMedia.innerHTML = `${elementoAtual.media}`
-          }
+              for (var i = 0; i < resposta3.length; i++) {
+                var elementoAtual = resposta3[i];
+                spanMedia.innerHTML = `${elementoAtual.media}`
+              }
 
-        });
-      } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-      }
-    })
+            });
+        } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+        }
+      })
       .catch(function (error) {
         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
       });
   }
 
   function media2() {
-    fetch(`/medidas/media2/${sessionStorage.ID_USUARIO}`, { cache: 'no-store' }).then(function (response) {
-      if (response.ok) {
-        response.json().then(function (resposta4) {
-          console.log(`Dados recebidos: ${JSON.stringify(resposta4)}`);
+    fetch(`/medidas/media2/${sessionStorage.ID_USUARIO}`, { cache: 'no-store' })
+      .then(function (response) {
+        if (response.ok) {
+          response.json()
+            .then(function (resposta4) {
+              console.log(`Dados recebidos: ${JSON.stringify(resposta4)}`);
 
-          for (var i = 0; i < resposta4.length; i++) {
-            var elementoAtual = resposta4[i];
-            spanMedia2.innerHTML = `${elementoAtual.media}`
-          }
+              for (var i = 0; i < resposta4.length; i++) {
+                var elementoAtual = resposta4[i];
+                spanMedia2.innerHTML = `${elementoAtual.media}`
+              }
 
-        });
-      } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-      }
-    })
+            });
+        } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+        }
+      })
       .catch(function (error) {
         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
       });
-  }
-
+  }  
 </script>

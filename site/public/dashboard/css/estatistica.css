@@ -1,5 +1,16 @@
-.botoes {
+.area {
     width: 80%;
+}
+
+.conteudo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.area .botoes {
+    width: 100%;
     justify-content: space-between;
     display: flex;
     border-radius: 30px;

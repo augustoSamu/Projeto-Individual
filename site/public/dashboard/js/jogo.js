@@ -97,6 +97,7 @@ var listaImagens = [
     },
 ]
 
+var nomeUsuario = sessionStorage.NOME_USUARIO
 var tempo = 60
 var acertos = 0
 var restantes = listaImagens.length
@@ -104,6 +105,7 @@ var aleatorio = 0
 
 setTimeout(() => {
     outro()
+    spanNomeUsuario.innerHTML = `${nomeUsuario}`
     spanAcertos.innerHTML = `${acertos}`
     spanRestantes.innerHTML = `${restantes}`
 }, "500")
@@ -214,7 +216,7 @@ function verificar() {
                 </button>`
 
 
-                
+
             fetch("/usuarios/acertosM", {
                 method: "POST",
                 headers: {
