@@ -52,26 +52,38 @@
 
     <!-- area direita -->
     <div class="area">
-      <div class="topo">
-        <span>Suas estatísticas</span>
-      </div>
-
-      <div class="conteudo">
-        <div class="mediaMinigame">
-          <span id="spanMedia">2</span>
-        </div>
-        <div class="mediaQuiz">
-          <span id="spanMedia2">5</span>
-        </div>
-      </div>
-
-      <div class="botoes">
-        <div class="graficos">
-          <canvas id="minigame"></canvas>
+      <div class="bh">
+        <div class="topo">
+          <span>SUAS ESTATÍSTICAS</span>
         </div>
 
-        <div class="graficos">
-          <canvas id="quiz"></canvas>
+        <div class="pontuacao"> 
+          
+          <div class="botoes">
+            <div class="graficos">
+              <canvas id="minigame"></canvas>
+            </div>
+            
+            <div class="graficos">
+              <canvas id="quiz"></canvas>
+            </div>
+          </div>
+          <div class="conteudo">
+            <div class="media">
+              <span>Média do minigame</span>
+              <div class="textoMinigame">
+                <span id="spanMedia">2</span>
+                <img id="fotoMinigame" src="../assets/emojiTriste.png" style="height: 80px; width: 80px;">
+              </div>
+            </div>
+            <div class="media">
+              <span>Média do Quiz</span>
+              <div class="textoQuiz">
+                <span id="spanMedia2">5</span>
+                <img id="fotoQuiz" src="../assets/emojiTriste.png" style="height: 80px; width: 80px;">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -113,11 +125,11 @@
     let dados = {
       labels: labels,
       datasets: [{
-        label: 'Ultimas tentativas',
+        label: 'Ultimas tentativas do Minigame',
         data: [],
         fill: false,
         borderColor: '#2E5941',
-        backgroundColor: ['#2E5941'],
+        backgroundColor: ['#A01818'],
         tension: 0.1
       }
       ]
@@ -176,11 +188,11 @@
     let dados = {
       labels: labels,
       datasets: [{
-        label: 'Ultimas tentativas',
+        label: 'Ultimas tentativas do Quiz',
         data: [],
         fill: false,
-        borderColor: '#2E5941',
-        backgroundColor: ['#2E5941'],
+        borderColor: '#EBEFE6',
+        backgroundColor: ['#A01818'],
         tension: 0.1
       }
       ]
@@ -220,7 +232,19 @@
 
               for (var i = 0; i < resposta3.length; i++) {
                 var elementoAtual = resposta3[i];
-                spanMedia.innerHTML = `${elementoAtual.media}`
+
+                if (resposta3.length == 1 && elementoAtual.media == null) {
+                  spanMedia.innerHTML = `0`
+                } else {
+                  spanMedia.innerHTML = `${elementoAtual.media}`
+
+                  var imagem = document.getElementById('fotoMinigame');
+                  if (elementoAtual.media >= 8 && elementoAtual.media < 16) {
+                    imagem.setAttribute('src', '../assets/emojiPensando.png')
+                  } else if (elementoAtual.media >= 16) {
+                    imagem.setAttribute('src', '../assets/emojiFeliz.png');
+                  }
+                }
               }
 
             });
@@ -241,9 +265,23 @@
             .then(function (resposta4) {
               console.log(`Dados recebidos: ${JSON.stringify(resposta4)}`);
 
+
               for (var i = 0; i < resposta4.length; i++) {
                 var elementoAtual = resposta4[i];
-                spanMedia2.innerHTML = `${elementoAtual.media}`
+
+                if (resposta4.length == 1 && elementoAtual.media == null) {
+                  spanMedia2.innerHTML = `0`
+                } else {
+                  spanMedia2.innerHTML = `${elementoAtual.media}`
+
+                  var imagem = document.getElementById('fotoQuiz');
+                  if (elementoAtual.media >= 4 && elementoAtual.media < 8) {
+                    imagem.setAttribute('src', '../assets/emojiPensando.png');
+                  } else if (elementoAtual.media >= 8) {
+                    imagem.setAttribute('src', '../assets/emojiFeliz.png');
+
+                  }
+                }
               }
 
             });

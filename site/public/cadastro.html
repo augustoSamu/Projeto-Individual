@@ -15,30 +15,32 @@
                     <span class="titulo">Criar nova conta</span>
                     <div class="campo">
                         <span>Nome:</span>
-                        <input id="inputNome" class="input" placeholder="Digite seu nome"/>
+                        <input id="inputNome" class="input" placeholder="Digite seu nome" />
                     </div>
                     <div class="campo">
                         <span>Email:</span>
-                        <input id="inputEmail" class="input" placeholder="Digite seu email"/>
+                        <input id="inputEmail" class="input" placeholder="Digite seu email" />
                     </div>
                     <div class="campo">
                         <span>Senha:</span>
-                        <input id="inputSenha" type="password" class="input" placeholder="Digite sua senha"/>
+                        <input id="inputSenha" type="password" class="input" placeholder="Digite sua senha" />
                     </div>
                     <div class="campo">
                         <span>Confirmar senha:</span>
-                        <input id="inputConfirmarSenha" type="password" class="input" placeholder="Repita sua senha"/>
+                        <input id="inputConfirmarSenha" type="password" class="input" placeholder="Repita sua senha" />
                     </div>
 
                     <div class="botoes">
-                        <button class="botao voltar">Voltar</button>
+                        <a href="index.html">
+                            <button class="botao voltar">Voltar</button>
+                        </a>
 
                         <button onclick="cadastrar()" class="botao ir">Cadastrar</button>
                     </div>
                 </div>
 
                 <div class="direita">
-                    <img src="assets/shrekfeliz.svg" height="600px" />
+                    <img src="assets/shrekfeliz.svg" height="600px" width="600px"/>
                 </div>
             </div>
         </div>
@@ -58,51 +60,69 @@
         var confirmacaoSenhaVar = inputConfirmarSenha.value;
 
         if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-        }
-
-        // Enviando o valor da nova input
-        fetch("/usuarios/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                nomeServer: nomeVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                Swal.fire({
-                    // title: 'Error!',
-                    // text: 'Do you want to continue',
-                    // imageUrl: 'https://static.wikia.nocookie.net/shrek/images/0/0c/Shrek_closeup.JPG/revision/latest/scale-to-width-down/136?cb=20220601234009',
-                    // confirmButtonText: 'Cool'
-                    imageUrl: 'https://static.wikia.nocookie.net/shrek/images/0/0c/Shrek_closeup.JPG/revision/latest/scale-to-width-down/136?cb=20220601234009',
-                    imageHeight: 1500,
-                    imageAlt: 'A tall image'
+            Swal.fire({
+                    title: 'Preencha todos os campos!!',
+                    imageUrl: 'assets/erroCadastro.png',
+                    imageHeight: 200,
                 })
-                cardErro.style.display = "block";
+            inputNome.value = ""
+            inputEmail.value = ""
+            inputSenha.value = ""
+            inputConfirmarSenha.value = ""
+        } else if (emailVar.indexOf("@") < 0) {
+            Swal.fire({
+                    title: 'Digite um email válido!!',
+                    imageUrl: 'assets/erroCadastro.png',
+                    imageHeight: 200,
+                })
+            inputEmail.value = ""
+        } else if (senhaVar != confirmacaoSenhaVar) {
+            Swal.fire({
+                    title: 'As senhas não coicidem!!',
+                    imageUrl: 'assets/erroCadastro.png',
+                    imageHeight: 200,
+                })
+            inputSenha.value = ""
+            inputConfirmarSenha.value = ""
+        } else {
 
-                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+            // Enviando o valor da nova input
+            fetch("/usuarios/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    nomeServer: nomeVar,
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
 
-                setTimeout(() => {
-                    window.location = "login.html";
-                }, "2000")
+                console.log("resposta: ", resposta);
 
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-        return false
+                if (resposta.ok) {
+                    Swal.fire({
+                        title: 'Cadastro finalizado!!',
+                        text: 'Redirecionando para o login',
+                        imageUrl: 'assets/sucessoCadastro.png',
+                        imageHeight: 200,
+                    })
+
+                    setTimeout(() => {
+                        window.location = "login.html";
+                    }, "2000")
+
+                } else {
+                    throw ("Houve um erro ao tentar realizar o cadastro!");
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                
+            });
+            return false
+        }
     }
 </script>

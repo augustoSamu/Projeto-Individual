@@ -40,15 +40,13 @@ var listaPerguntas = [
         respostaCerta: 3
     },
     {
-        // pergunta: "Qual desses, apesar de uma infância difícil, sempre se manteve otimista?",
-        pergunta: "Pergunta secreta",
-        alternativas: ["1", "2", "3", "4"],
+        pergunta: "Qual desses, apesar de uma infância difícil, sempre se manteve otimista?",
+        alternativas: ["Perrito", "Encantado", "Tres Porquinhos", "Burro"],
         respostaCerta: 0
     },
     {
-        //pergunta: "O Gato de Botas luta por sua vida contra quem?"
-        pergunta: "Pergunta secreta 2",
-        alternativas: ["1", "2", "3", "4"],
+        pergunta: "O Gato de Botas luta por sua vida contra quem?",
+        alternativas: ["Morte", "Dragao", "Shrek", "Cachinhos Dourados"],
         respostaCerta: 0
     },
 ]
@@ -99,7 +97,7 @@ function validacao(alternativaSelecionada) {
             sortear()
             spanQuestao.innerHTML = questao
         }, 500)
-    } else if (acertos < 10) {
+    } else {
         setTimeout(() => {
             divFim.innerHTML = `
             <div class="classPergunta">

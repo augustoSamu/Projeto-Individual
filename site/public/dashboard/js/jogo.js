@@ -98,7 +98,7 @@ var listaImagens = [
 ]
 
 var nomeUsuario = sessionStorage.NOME_USUARIO
-var tempo = 60
+var tempo = 200
 var acertos = 0
 var restantes = listaImagens.length
 var aleatorio = 0

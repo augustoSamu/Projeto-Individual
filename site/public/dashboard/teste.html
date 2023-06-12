@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <button onclick="bla()">
+        Teste
+    </button>
+    <img src="../assets/carregando.gif" alt="">
+</body>
+
+</html>
+
+<script>
+    function bla() {
+        Swal.fire({
+            title: 'Cadastro finalizado!!',
+            text: 'Redirecionando para o login',
+            imageUrl: '../assets/sucessoCadastro.png',
+            imageUrl: '../assets/carregando.gif',
+            imageHeight: 200,
+                        
+            // imageUrl: 'https://static.wikia.nocookie.net/shrek/images/0/0c/Shrek_closeup.JPG/revision/latest/scale-to-width-down/136?cb=20220601234009',
+            
+            // imageAlt: 'A tall image'
+        })
+    }
+</script>

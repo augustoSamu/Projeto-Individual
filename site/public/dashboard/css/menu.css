@@ -3,7 +3,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Dosis:wght@400;700;800&display=swap');
 /* @import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Dosis&display=swap'); */
 
-body {
+body, html {
+    height: 100%;
     margin: 0;
     padding: 0;
     font-family: TT Norms W01 Regular, helvetica, sans-serif;
@@ -11,12 +12,14 @@ body {
     /* font-family: Carrois Gothic SC; */
     font-family: 'Dosis';
     font-size: 22px;
+    overflow: hidden;
 }
+
 
 .tela {
     display: flex;
     margin: auto;
-    height: 790px;
+    height: 100vh;
 }
 
 .tela a {
@@ -24,20 +27,21 @@ body {
 }
 
 .header {
-    height: 100%;
+    height: 100vh;
     width: 300px;
     padding: 28px;
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size: 26px;
+    justify-content: space-around;
 
     background-color: #EBEFE6;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .navHeader {
-    height: 100%;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -58,7 +62,7 @@ body {
 }
 
 .opcoes {
-    height: 100%;
+    height: fit-content;
     width: 100%;
     text-align: center;
 }
@@ -119,7 +123,6 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-direction: column;;
-
 }
 
 .container {

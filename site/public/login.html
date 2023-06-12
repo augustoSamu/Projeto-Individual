@@ -4,6 +4,7 @@
 <head>
     <title>Shrek | Login</title>
     <link rel="stylesheet" href="css/cadastroLogin.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -32,11 +33,11 @@
                                 Voltar
                             </button>
                         </a>
-                        
-                            <button onclick="entrar()" class="botao ir">
-                                Entrar
-                            </button>
-                        
+
+                        <button onclick="entrar()" class="botao ir">
+                            Entrar
+                        </button>
+
                     </div>
                 </div>
 
@@ -58,54 +59,70 @@
         var senhaVar = inputSenha.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-        }
-
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
+            Swal.fire({
+                title: 'Preencha todos os campos!!',
+                imageUrl: 'assets/erroCadastro.png',
+                imageHeight: 100,
             })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
+            inputEmail.value = ""
+            inputSenha.value = ""
+        } else {
+            console.log("FORM LOGIN: ", emailVar);
+            console.log("FORM SENHA: ", senhaVar);
 
-            if (resposta.ok) {
-                console.log(resposta);
+            fetch("/usuarios/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
 
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.idUsuario;
-                    sessionStorage.FKUSUARIO = json.idUsuario
+                if (resposta.ok) {
+                    console.log(resposta);
 
-                    setTimeout(function () {
-                        window.location = "./dashboard/estatistica.html";
-                    }, 1000); // apenas para exibir o loading
+                    Swal.fire({
+                        title: 'Carregando',
+                        text: 'Entrando na Dashboard',
+                        imageUrl: 'assets/carregando.gif',
+                        imageHeight: 100,
+                    })
 
-                });
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.ID_USUARIO = json.idUsuario;
+                        sessionStorage.FKUSUARIO = json.idUsuario
 
-            } else {
-                console.log("Houve um erro ao tentar realizar o login!");
+                        setTimeout(function () {
+                            window.location = "./dashboard/estatistica.html";
+                        }, 2000); // apenas para exibir o loading
 
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
+                    });
 
-        }).catch(function (erro) {
-            console.log(erro);
-        })
+                } else {
+                    console.log("Houve um erro ao tentar realizar o login!");
+                    Swal.fire({
+                    title: 'Seu usuário e/ou senha não existem!',
+                    imageUrl: 'assets/erroLogin.png',
+                    imageHeight: 100,
+                })
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
 
-        return false;
+            }).catch(function (erro) {
+                console.log(erro);
+            })
+
+            return false;
+        }
     }
 </script>

@@ -1,16 +1,36 @@
+.area {
+    justify-content: center;
+    align-items: center;
+}
 
 .container {
-    height: 100vh;
-    width: 75%;
+    width: 80%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 
 .topo {
     height: auto;
     margin-top: 0;
+}
+
+.conteudo {
+    width: 90%;
+    padding: 50px 30px;
+    background: #EBEFE6;
+    border-radius: 30px;
+    text-align: center;
+    height: fit-content;
+    font-size: 28px;
+    line-height: 40px;
+    font-weight: 600;
+}
+
+.comoFunciona {
+    font-weight: lighter;
+    text-align: justify;
+    word-wrap: break-word;
 }
 
 .info {
