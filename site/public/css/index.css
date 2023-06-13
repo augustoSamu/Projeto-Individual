@@ -69,3 +69,83 @@ body {
     text-decoration: none;
     color: black;
 }
+
+.banner .container {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+
+    flex-direction: column;
+}
+
+.comeco {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    justify-items: center;
+    align-items: center;
+    padding-bottom: 60px;
+    border-bottom: #EBEFE6 1px solid;
+}
+
+.comeco span {
+    width: 20%;
+    word-wrap: break-word;
+    color: #EBEFE6;
+    font-size: 36px;
+}
+
+.mais {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 0;
+    gap: 60px;
+    border-bottom: #EBEFE6 1px solid;
+}
+
+.titul{
+    color: #EBEFE6;
+    font-size: 36px;
+}
+
+.linha {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.quadrado {
+    width: 30%;
+    padding: 30px;
+    background: #EBEFE6;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+}
+
+.center {
+    text-align: center;
+    font-weight: 600;
+    font-size: 26px;
+}
+
+.fim  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 0;
+    gap: 40px;
+}
+
+.fim .quadrado{
+    color: #EBEFE6;
+    font-size: 24Spx;
+    background-color: #2E5941;
+}
