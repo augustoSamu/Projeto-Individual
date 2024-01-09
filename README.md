@@ -3,7 +3,6 @@ Foco em desenvolver um projeto: Universo de Shrek
 
 CANVA
 https://www.canva.com/design/DAFlqiKZUDA/ff6CpziCTud5BVQzEkWPzQ/edit
---dificuldade: pensar em uma index
 
 TRELLO
 https://trello.com/b/rlcvgo3A/shrek-blog
